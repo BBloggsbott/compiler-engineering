@@ -1,7 +1,6 @@
 # Compiler Engineering
 
-My codes from my compiler engineering lab
+My codes from my compiler engineering lab (Java and Python)
 
 ## Ex1 - Regular expression to NFA
-* **regex-to-nfa.py** - File containing code to convert regex to NFA (Uses utilities from nfa_utils.py)
-* **nfa_utils.py** - File containing code for handling NFAs
+* **Part 1** - Convert regex to NFA

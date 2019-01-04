@@ -38,10 +38,15 @@ class NFA:
 			edge.increase_nodes_by(diff)
 		for i in range(len(self.nodes)):
 			self.nodes[i]+=diff
+
 	def extend(self, nfa):
 		last_node = self.get_last_node()
 		nfa.change_start_node(last_node)
 		self.edges.extend(nfa.edges)
+		self.nodes.extend(nfa.nodes)
+
+	def absorb(self, nfa):
+		self.edhes.extend(nfa.edges)
 		self.nodes.extend(nfa.nodes)
 
 def add_star(nfa, prev_char, node):
@@ -65,6 +70,15 @@ def add_star_to_nfa(nfa):
 	return nfa
 
 
+def nfa_or_nfa(nfa1, nfa2, start, end):
+	last_node = nfa1.get_last_node()
+	nfa2.change_start_node(last_node+1)
+	nfa1.add_edge(start, start+1, 'epsilon')
+	last_node = nfa2.get_last_node()
+	nfa1.add_edge(end, last_node, 'epsilon')
+	nfa.absorb(nfa2)
+
+
 def build_nfa(exp):
 	nfa = NFA()
 	node = 0
@@ -85,6 +99,7 @@ def build_nfa(exp):
 		elif(i == '|'):
 			or_flag = True
 	return nfa
+
 
 def generate_nfa(exp):
 	sub_exp = ''
