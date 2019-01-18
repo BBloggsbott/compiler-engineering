@@ -7,7 +7,7 @@ public class NFA {
     ArrayList<Edge> edges;
     String epsilon = "epsilon";
     HashSet<Integer> nodes;
-    HashSet<String> alphabets;
+    public HashSet<String> alphabets;
 
     public NFA() {
         edges = new ArrayList<Edge>();
@@ -15,14 +15,22 @@ public class NFA {
         alphabets = new HashSet<String>();
     }
 
+    public NFA(NFA nfa){
+        this.edges = nfa.edges;
+        this.nodes = nfa.nodes;
+        this.alphabets = nfa.alphabets;
+    }
+
     public void addEdge(int from, int to, String label) {
         this.edges.add(new Edge(from, to, label));
         Collections.sort(this.edges);
         this.nodes.add(from);
         this.nodes.add(to);
-        if(epsilon.compareToIgnoreCase(label) != 0){
-            alphabets.add(label);
+        System.out.println("Debug - addEdge - NFA\n"+this.alphabets);
+        if(epsilon.compareTo(label) != 0){
+            this.alphabets.add(label);
         }
+        System.out.println("Debug - addEdge - NFA\n"+alphabets);
     }
 
     public int getLastNode() {
