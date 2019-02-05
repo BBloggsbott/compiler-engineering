@@ -5,13 +5,13 @@ public class NFAToDFA{
     final static String epsilon = "epsilon";
     public static ArrayList<State> allStates = new ArrayList<State>();
     public static HashSet<Integer> allNames = new HashSet<Integer>();
+    static ArrayList<State> toAdd = new ArrayList<State>(); 
     public static State epsilonClosure(NFA nfa, State state){
         HashSet<Edge> edgesFromNode;
         if(state.length() == 0){
             return state;
         }
         int name = Integer.parseInt(state.name.substring(1))+1;
-        System.out.println("Debug - epsilonClosure\n"+name);
         while(allNames.contains(name)){
             name += 1;
         }
@@ -61,14 +61,13 @@ public class NFAToDFA{
         s0.addNode(0);
         int k = 0;
         while(true){
+            toAdd.removeAll(toAdd);
             for(State i : allStates){
                 System.out.println("Debug - nfaToDFA\n"+i);
                 if(processed.contains(i)){
                     continue;
                 }
                 State temp1 = epsilonClosure(nfa, i);
-                System.out.println("Debug - nfaToDFA\n"+temp1.nodes);
-                System.out.println("Debug - nfaToDFA\n"+nfa.alphabets);
                 for(String j : nfa.alphabets){
                     System.out.println("Debug - nfaToDFA\n"+j);
                     State temp2 = closure(nfa, temp1, j);

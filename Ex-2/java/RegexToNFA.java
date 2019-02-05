@@ -76,6 +76,7 @@ class RegexToNFA{
             }
             subExp = subExp+cur_char;
         }
+        System.out.print(curNFA.alphabets);
         return curNFA;
     }
 

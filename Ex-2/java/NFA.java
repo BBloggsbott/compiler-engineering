@@ -62,6 +62,7 @@ public class NFA {
         fa.changeStartNode(lastNode);
         this.edges.addAll(fa.edges);
         this.nodes.addAll(fa.nodes);
+        this.alphabets.addAll(fa.alphabets);
         Collections.sort(this.edges);
     }
 

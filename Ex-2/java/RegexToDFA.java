@@ -7,7 +7,7 @@ public class RegexToDFA {
         String regex = sc.next();
         NFA nfa = RegexToNFA.generateNFA(regex);
         System.out.print("--\nNFA\n--\n");
-        System.out.println(nfa.getAlphabet());
+        System.out.println("Debug - RegexToDFA - Alphabet\n" + nfa.getAlphabet());
         DFA dfa = NFAToDFA.nfaToDFA(nfa);
         System.out.println("--\nDFA\n--");
         System.out.println(dfa);
